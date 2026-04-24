@@ -35,3 +35,36 @@ a clean daily email digest automatically.
 ---
 
 ## Project Structure
+ai-news-aggregator/
+├── app/
+│   ├── fetcher.py        # Fetches articles from NewsAPI
+│   ├── summarizer.py     # Summarizes using local LLM
+│   ├── digest.py         # Compiles daily digest
+│   └── emailer.py        # Sends email automatically
+├── docker/
+│   └── Dockerfile
+├── main.py               # Entry point
+├── pyproject.toml
+├── .env.example
+└── README.md
+1. Fetches latest articles from NewsAPI
+2. Passes each article to local LLM for 2-3 line summary
+3. Compiles all summaries into structured digest
+4. Sends digest to inbox automatically every day
+
+---
+
+## What I Learned
+
+- Building autonomous end-to-end AI pipelines
+- Integrating local LLMs for cost-free summarization
+- Automating data ingestion, processing and delivery
+- Docker containerization for reproducible deployment
+- Real-world debugging and iterative development
+
+---
+
+## License
+
+MIT License
+
