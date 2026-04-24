@@ -1,50 +1,72 @@
-# AI News Aggregator - Live Build Repository
+AI News Aggregator
+An autonomous AI-powered news aggregator that fetches articles from NewsAPI, summarizes them using a local LLM, and delivers a clean daily email digest automatically.
+What It Does
 
-This repository accompanies my 3-hour live coding session where I build a complete AI-powered news aggregator from scratch. This is a **private repository** containing valuable implementation details and deployment strategies used in production environments.
+Fetches latest news articles from NewsAPI across categories like technology, AI, and science
+Summarizes each article using a local LLM — no OpenAI API key required
+Compiles summaries into a structured daily digest
+Sends the digest automatically via email every day
 
-## Project Structure
+Project Structure
+ai-news-aggregator/
+├── app/
+│   ├── fetcher.py        # Fetches articles from NewsAPI
+│   ├── summarizer.py     # Summarizes articles using local LLM
+│   ├── digest.py         # Compiles daily email digest
+│   └── emailer.py        # Sends digest via email
+├── docker/
+│   └── Dockerfile        # Docker configuration
+├── main.py               # Entry point — runs daily pipeline
+├── pyproject.toml        # Dependencies
+├── .env.example          # Environment variables template
+└── README.md
+Tech Stack
 
-This project is organized across three branches, each corresponding to a different phase of the build:
+Python — core language
+NewsAPI — news article fetching
+Local LLM — article summarization without external API costs
+SMTP — automated email delivery
+Docker — containerized deployment
+PostgreSQL — article storage and digest management
 
-- **`master`** - Part 1: Local setup and core functionality
-- **`deployment`** - Part 2: Deployment configuration and infrastructure
-- **`deployment-final`** - Part 3: Final optimizations and production-ready changes
+Setup
+1. Clone the repository
+bashgit clone https://github.com/ArnavGulkari/ai-news-aggregator.git
+cd ai-news-aggregator
+2. Create environment file
+bashcp .env.example .env
+3. Add your credentials to .env
+NEWSAPI_KEY=your_newsapi_key
+EMAIL_SENDER=your_email@gmail.com
+EMAIL_PASSWORD=your_app_password
+EMAIL_RECEIVER=receiver@gmail.com
+4. Install dependencies
+bashpip install -r requirements.txt
+5. Run the pipeline
+bashpython main.py
+Or run with Docker:
+bashdocker compose up
+How It Works
 
-Each branch serves as an intermediate checkpoint, allowing you to reference the exact state of the codebase at any point during the video.
+fetcher.py calls NewsAPI and retrieves latest articles
+summarizer.py passes each article to a local LLM and generates a 2-3 line summary
+digest.py compiles all summaries into a structured daily digest
+emailer.py sends the digest to your inbox automatically
 
-## How This Video Works
+Deployment
+The project supports three deployment stages:
 
-This is a **live coding build**, not a traditional step-by-step tutorial. Here's what to expect:
+Local — run directly with Python
+Docker — containerized for consistent environments
+Production — scheduled daily pipeline with logging
 
-- **Fast-paced development** - I code at my natural pace, leveraging AI tools extensively
-- **AI-assisted workflow** - You won't see every code snippet or file generation in real-time
-- **Real-world approach** - This condenses 20-40 hours of learning into a single session
-- **Not cookie-cutter** - Unlike structured tutorials, this reflects how coding actually happens in practice
+What I Learned
 
-## How to Follow Along
+Building end-to-end autonomous AI pipelines
+Integrating local LLMs for cost-free summarization
+Automating data ingestion, processing, and delivery workflows
+Docker containerization for reproducible deployments
+Real-world debugging and iterative development
 
-### Recommended Approach (Maximum Learning)
-
-1. **Clone this repository** before starting the video
-2. **Keep a local copy ready** on your system as you code along
-3. **Use intermediate checkpoints** - When I make major updates or run tests, pause and:
-   - Reference the corresponding branch in this repository
-   - Copy relevant code snippets into your project
-   - Use AI coding assistants to help you reach the same checkpoint
-4. **Iterate step-by-step** - Don't rush ahead. Ensure each phase works before moving forward
-5. **Expect confusion** - Some parts will move fast and may not be immediately clear. This is where real learning happens
-
-### Alternative Approach (Not Recommended)
-
-You can skip ahead to the `deployment-final` branch and try to get everything working, but you'll miss the iterative problem-solving process that makes this valuable.
-
-## Why This Approach?
-
-Traditional tutorials show you the "right way" to do things. This video shows you the **real way** - with AI assistance, rapid iteration, debugging, and adapting on the fly. By following along and hitting the same checkpoints, you'll:
-
-- Learn how to effectively leverage AI coding tools
-- Understand the thought process behind architectural decisions
-- Experience real-world development workflows
-- Build muscle memory through hands-on practice
-
-**The most valuable learning happens when you struggle, reference the code, and push through to the next checkpoint.**
+License
+MIT License
